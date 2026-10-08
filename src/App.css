@@ -1,38 +1,990 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #2d73dc;
+    color:aqua;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+    background: linear-gradient(135deg, #2d73dc, #1a4f9c);
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.header p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header p {
+    opacity: 0.8;
+}
+.navbar {
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   background: white;
+   padding: 10px 0;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-btn {
+    border: none;
+    background: transparent;
+    color: #2d73dc;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: 0.5s;
+}
+.nav-btn:hover {
+    background: #2ddc39;
+    transform: translateY(-3px);
+}
+.nav-btn:active {
+    background: #1a4f9c;
+    color: white;
+}
+#content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.dashboard h2{
+    margin-bottom: 20px;
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: white;
+    color: #2d3034;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px hwb(0 4% 35% / 0.2);
+}
+.card h3  {
+    color: #1a4f9c;
+    margin-bottom: 10px;
+}
+.card p {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+}
+.book-management {
+    max-width: 600px;
+    margin: auto;
+}
+.book-form-card {
+    color: rgb(35, 169, 213);
+    margin-bottom: 20px;
+}
+.book-form-card {
+    background: white;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+.book-form-card h3 {
+    color:#4384e6;
+    margin-bottom: 15px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group lable {
+    display: block;
+    margin-bottom: 5px;
+    font-weight:bold;
+    color:rgb(2, 35, 64);
+}
+.form-group input {
+    width: 100%;
+    border: 2px solid #dbeafe;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition:0.3s;
+}
+.form-group input:focus {
+    border-color:#27c2e1;
+    box-shadow:#27c2e1;
+}
+.add-book-btn {
+    width: 100%;
+    padding: 13px;
+    border:none;
+    background: #2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+    transition:0.3s;
+}
+.add-book-btn:hover {
+    background: #83af1e;
+    transform: translateY(-3px);
+    box-shadow:#83af1e;
+
+}
+.book-list-section{
+    margin-top: 35px;
+}
+.book-list-section h3 {
+    color:rgb(27, 29, 30);
+    margin-bottom: 15px;
+}
+.table-container {
+    background: white;
+    border-radius: 15px;
+    overflow-x: auto;
+
+    box-shadow: 0 5px 20px rgb(0, 0, 0, 0.08);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+th {
+    font-weight: bold;
+}
+tbody tr {
+    border-bottom: 1px solid #2ddc39;
+    transition: 0.3s;
+}
+tbody tr:hover {
+    background: #07dbea;
+    transform: scale(1.005);
+}
+td {
+    color: #171c1d;
+}
+.available {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #141818;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+.low-stock {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: bold;
+}
+.empty-books {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    color:#dbeafe;
+}
+.edit-btn,
+.delete-btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.edit-btn:hover {
+    background: greenyellow;
+    color: white;
+    transform: translateY(-2px);
+}
+.delete-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+.delete-btn:hover {
+    background: greenyellow;
+    color: white;
+    transform: translateY(-2px);
+}
+.transaction-card,
+.transaction-history {
+    background: white;
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+.transactions h2{
+    color:rgb(2, 35, 64);
+}
+.transaction-card h3,
+.transaction-history h3 {
+    color: #1e40af;
+    margin-bottom: 20px;
+}
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #dbeafe;
+    border-radius: 8px;
+    background: white;
+    font-size: 15px;
+    outline: none;
+}
+.form-group select:focus {
+    border-color: #2563eb;
+}
+.transaction-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.borrow-btn,
+.return-btn {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointor;
+    transition: 0.3s;
+}
+.borrow-btn {
+    background: #2563eb;
+}
+.return-btn {
+    background: #1d4ed8;
+}
+.borrow-btn:hover,
+.return-btn:hover {
+    transform: transalateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #eff6ff;
+    transition: 0.3s;
+
+}
+.transaction-item:hover {
+    transform: translateX(5px);
+}
+.transaction-item p {
+    margin: 5px 0 0;
+    color: #64748b;
+}
+.transaction-type {
+     display: block;
+     color: #1d4ed8;
+     font-weight: bold;
+}
+.transaction-item small {
+    color: #64748b;
+}
+.no-transactions {
+    text-align: center;
+    color: #64748b;
+    padding: 20px;
+}
+.user-form-card,
+.user-list-section {
+    background: white;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+}
+.users h2 {
+    color: #2563eb;
+}
+.user-form-card h3,
+.user-list-section h3 {
+    color: #1e40af;
+    margin-bottom: 20px;
+
+}
+.add-user-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.add-user-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+.user-list-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.user-list-section th {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.user-list-section td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.user-list-section tr:hover {
+    background: #eff6ff;
+}
+
+
+.active-nav {
+    background-color: #2ddc39 !important;
+    color: white !important;
+}
+
+.logout-btn {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.logout-btn:hover {
+    background-color: #2ddc39;
+}
+
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #2d73dc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.cancel-btn {
+    background-color: #777 !important;
+    margin-left: 8px;
+}
+
+.edit-btn {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.edit-btn:hover {
+    background-color: #2ddc39;
+}
+
+.delete-btn {
+    background-color: #dc2d2d;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.delete-btn:hover {
+    background-color: #a91d1d;
+}
+
+.stock-control {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.stock-control input {
+    width: 70px;
+    padding: 6px;
+}
+
+.stock-control button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.stock-control button:hover {
+    background-color: #2ddc39;
+}
+
+.transaction-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.transaction-buttons button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-buttons button:hover {
+    background-color: #2ddc39;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2d73dc;
+}
+
+.login-box {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-box h1 {
+    color: #2d73dc;
+}
+
+.login-box h2 {
+    color: #2d73dc;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-box input {
+    padding: 12px;
+    border: 2px solid #2d73dc;
+    border-radius: 5px;
+}
+
+.login-box button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background-color: #2ddc39;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.demo-login {
+    font-size: 13px;
+    color: #555;
+    margin-top: 20px;
+}
+
+.low-stock {
+    background-color: #fff0f0;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+    nav {
+        flex-wrap: wrap;
+    }
+
+    nav a,
+    nav button {
+        margin-bottom: 5px;
+    }
+
+    .login-box {
+        width: 85%;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+/* =========================================
+   BLUESHELF REACT FIXES
+   ========================================= */
+
+/* ---------- NAVIGATION ---------- */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 15px;
+    background-color: white;
+    flex-wrap: wrap;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+nav a:hover {
+    background-color: #2ddc39;
+    color: white;
+}
+
+nav a.active-nav {
+    background-color: #2ddc39;
+    color: white;
+}
+
+/* Logout */
+
+nav .logout-btn {
+    display: inline-block;
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+nav .logout-btn:hover {
+    background-color: #2ddc39;
+}
+
+
+/* ---------- CONTENT ---------- */
+
+#content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+
+/* ---------- SEARCH ---------- */
+
+.search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #2d73dc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+
+/* ---------- BOOK FORM ---------- */
+
+.book-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.book-form h3 {
+    color: #2d73dc;
+    margin-top: 0;
+}
+
+.book-form input,
+.book-form select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #2d73dc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.add-book-btn {
+    width: 100%;
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.add-book-btn:hover {
+    background-color: #2ddc39;
+}
+
+
+/* ---------- USER FORM ---------- */
+
+.user-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.user-form h3 {
+    color: #2d73dc;
+    margin-top: 0;
+}
+
+.user-form input,
+.user-form select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #2d73dc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.user-form button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-form button:hover {
+    background-color: #2ddc39;
+}
+
+
+/* ---------- TABLE ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+table th {
+    background-color: white;
+    color: #00ffff;
+    padding: 15px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 2px solid #2ddc39;
+    color: #333;
+}
+
+table tr:hover {
+    background-color: #eaffff;
+}
+
+
+/* ---------- LOW STOCK ---------- */
+
+.low-stock {
+    background-color: #fff0f0 !important;
+}
+
+.low-stock td {
+    color: #d62828;
+    font-weight: bold;
+}
+
+
+/* ---------- EDIT BUTTON ---------- */
+
+.edit-btn {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.edit-btn:hover {
+    background-color: #2ddc39;
+}
+
+
+/* ---------- DELETE BUTTON ---------- */
+
+.delete-btn {
+    background-color: #dc2d2d;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.delete-btn:hover {
+    background-color: #a91d1d;
+}
+
+
+/* ---------- STOCK ---------- */
+
+.stock-control {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.stock-control input {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #2d73dc;
+    border-radius: 4px;
+}
+
+.stock-control button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.stock-control button:hover {
+    background-color: #2ddc39;
+}
+
+
+/* ---------- TRANSACTIONS ---------- */
+
+.transaction-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.transaction-form h3 {
+    color: #2d73dc;
+}
+
+.transaction-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #2d73dc;
+    border-radius: 5px;
+}
+
+.transaction-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.transaction-buttons button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-buttons button:hover {
+    background-color: #2ddc39;
+}
+
+.transaction-card {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border-left: 5px solid #2d73dc;
+}
+
+.transaction-card h3 {
+    color: #2d73dc;
+}
+
+
+/* ---------- DASHBOARD ---------- */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card h3 {
+    color: #2d73dc;
+}
+
+.card p {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2d73dc;
+}
+
+
+/* ---------- LOGIN ---------- */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d73dc;
+}
+
+.login-box {
+    width: 350px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-box h1,
+.login-box h2 {
+    color: #2d73dc;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-box input {
+    padding: 12px;
+    border: 2px solid #2d73dc;
+    border-radius: 5px;
+}
+
+.login-box button {
+    background-color: #2d73dc;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background-color: #2ddc39;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    #content {
+        padding: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .transaction-buttons {
+        flex-direction: column;
+    }
 }
